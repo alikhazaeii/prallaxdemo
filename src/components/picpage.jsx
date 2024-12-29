@@ -61,7 +61,7 @@ export default function Picpage() {
       </div>
 
       <img
-        className="absolute z-30 transition-all w-[40vw] "
+        className="absolute z-30 transition-all w-[40vw] ml-32 "
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${1 - scrollY / 1000})`,
           opacity: 1 - scrollY / 300,
