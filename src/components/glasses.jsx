@@ -26,7 +26,7 @@ export default function Glasses() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-white">
+    <div className="w-full flex flex-col items-center bg-white py-20">
       <h2 className="text-center text-lg md:text-3xl uppercase font-bold py-5">
         find your inner spark
       </h2>
@@ -43,18 +43,17 @@ export default function Glasses() {
 
         </button>
 
-        {/* تصاویر */}
         <div className="relative flex items-center w-full h-[300px] justify-center my-10">
           {images.map((image, index) => {
-            const isActive = index === currentIndex; // مرکز
+            const isActive = index === currentIndex; 
             const isLeft =
               index ===
-              (currentIndex - 1 + images.length) % images.length; // چپ
+              (currentIndex - 1 + images.length) % images.length; 
             const isRight =
-              index === (currentIndex + 1) % images.length; // راست
+              index === (currentIndex + 1) % images.length; 
 
             const display =
-              isActive || isLeft || isRight ? 'block' : 'none'; // نمایش تنها ۳ تصویر
+              isActive || isLeft || isRight ? 'block' : 'none'; 
 
             const translateX = isActive
               ? 0
@@ -64,9 +63,9 @@ export default function Glasses() {
                   ? 150
                   : 0;
 
-            const scale = isActive ? 2 : 0.5; // مقیاس
-            const opacity = isActive ? 1 : 0.5; // شفافیت
-            const zIndex = isActive ? 10 : 5; // ترتیب لایه‌بندی
+            const scale = isActive ? 2 : 0.5;
+            const opacity = isActive ? 1 : 0.5; 
+            const zIndex = isActive ? 10 : 5; 
             const animation = isActive ? 'bounce 1s infinite' : 'none';
             return (
               <img
@@ -86,7 +85,6 @@ export default function Glasses() {
           })}
         </div>
 
-        {/* دکمه راست */}
         <button
           onClick={handleNext}
           className="absolute right-2 z-10 bg-black text-white p-2 rounded-full"
@@ -95,8 +93,7 @@ export default function Glasses() {
         </button>
       </div>
 
-      {/* خط پیشرفت */}
-      <div className="w-full max-w-4xl h-2 mt-4 bg-gray-300 rounded-full relative my-5">
+      <div className="w-3/12 max-w-4xl h-2 mt-4 bg-gray-300 rounded-full relative my-5">
         <div
           className="h-full bg-black rounded-full transition-all duration-300"
           style={{
