@@ -26,7 +26,7 @@ export default function Glasses() {
   };
 
   return (
-    <div className="w-full flex flex-col items-center bg-white py-20">
+    <section className="w-full flex flex-col items-center bg-white py-20">
       <h2 className="text-center text-lg md:text-3xl uppercase font-bold py-5">
         find your inner spark
       </h2>
@@ -34,7 +34,6 @@ export default function Glasses() {
         Discover the full collection, including a selection of frames available in a low-bridge fit.
       </p>
       <div className="relative w-full flex justify-center items-center overflow-hidden py-5">
-        {/* دکمه چپ */}
         <button
           onClick={handlePrev}
           className="absolute left-2 z-10 bg-black text-white p-2 rounded-full"
@@ -111,6 +110,6 @@ export default function Glasses() {
           }
         }
       `}</style>
-    </div>
+    </section>
   );
 }

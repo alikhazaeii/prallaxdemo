@@ -2,28 +2,30 @@ import React, { useRef, useEffect } from "react";
 
 export default function Finalsec() {
   const sectionRef = useRef(null);
+  const videosRef = useRef(null);
 
   useEffect(() => {
-    const handleWheel = (e) => {
+    const handleScroll = () => {
       const section = sectionRef.current;
-      if (!section) return;
+      const videos = videosRef.current;
+
+      if (!section || !videos) return;
 
       const sectionTop = section.offsetTop;
       const sectionHeight = section.offsetHeight;
       const scrollY = window.scrollY;
 
-      // بررسی اینکه آیا کاربر داخل این سکشن است
+    
       if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-        e.preventDefault(); // جلوگیری از اسکرول عمودی
-        const scrollSpeed = 5; // ضریب سرعت اسکرول
-        section.scrollLeft += e.deltaY * scrollSpeed; // تغییر اسکرول به افقی با سرعت بیشتر
+        const deltaY = scrollY - sectionTop; 
+        videos.scrollLeft = deltaY * 2; 
       }
     };
 
-    window.addEventListener("wheel", handleWheel, { passive: false });
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener("wheel", handleWheel);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -43,21 +45,23 @@ export default function Finalsec() {
   return (
     <section
       ref={sectionRef}
-      className="w-full h-fit flex gap-5 py-20 overflow-x-hidden scroll-smooth"
-      style={{
-        height: "100vh",
-        scrollBehavior: "smooth",
-      }}
+      className="w-full h-[2200px] relative py-20"
     >
-      {videos.map((video, index) => (
-        <video
-          key={index}
-          src={video}
-          loop
-          autoPlay
-          muted
-        />
-      ))}
+      <div
+        ref={videosRef}
+        className="flex gap-5 overflow-x-hidden sticky top-0  w-full py-20"
+      >
+        {videos.map((video, index) => (
+          <video
+            key={index}
+            src={video}
+            loop
+            autoPlay
+            muted
+            className="h-full"
+          />
+        ))}
+      </div>
     </section>
   );
 }
