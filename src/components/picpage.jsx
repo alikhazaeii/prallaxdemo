@@ -3,9 +3,8 @@ import React, { useState, useEffect } from 'react';
 export default function Picpage() {
   const [offset, setOffset] = useState({ x: 0, y: 0 });
   const [scrollY, setScrollY] = useState(0);
-  const [divOpacity, setDivOpacity] = useState(0);
-  const [FigOpacity, setFigOpacity] = useState(0);
-
+  const [divOpacity, setDivOpacity] = useState(0); 
+  const [FigOpacity, setFigOpacity] = useState(1); 
 
   const handleMouseMove = (e) => {
     const { clientX, clientY, currentTarget } = e;
@@ -21,7 +20,6 @@ export default function Picpage() {
     const currentScroll = window.scrollY;
     setScrollY(currentScroll);
 
-
     if (currentScroll >= 300) {
       setDivOpacity(1);
     } else {
@@ -29,17 +27,31 @@ export default function Picpage() {
     }
 
     if (currentScroll >= 1350) {
-      setFigOpacity(0)
+      setFigOpacity(0);
     } else {
-      setFigOpacity(1)
+      setFigOpacity(1);
     }
   };
 
   useEffect(() => {
+    const initialScroll = window.scrollY;
+    setScrollY(initialScroll);
+
+    if (initialScroll >= 300) {
+      setDivOpacity(1);
+    } else {
+      setDivOpacity(0);
+    }
+
+    if (initialScroll >= 1350) {
+      setFigOpacity(0);
+    } else {
+      setFigOpacity(1);
+    }
+
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-  console.log(scrollY);
 
   return (
     <figure
@@ -49,19 +61,18 @@ export default function Picpage() {
         opacity: FigOpacity,
       }}
     >
-      <div className="text-lg md:text-6xl flex flex-wrap justify-center text-yellow-400 absolute top-10 capitalize transition-opacity *:py-2"
+      <div
+        className="text-lg md:text-6xl flex flex-wrap justify-center text-yellow-400 absolute top-10 capitalize transition-opacity"
         style={{
           opacity: 1 - scrollY / 300,
         }}
       >
         <img src="https://media.oakley.com/2024/Olympics/Logo.svg" alt="" />
-        <h2 className='w-full text-center'>
-          winning is an inside the job
-        </h2>
+        <h2 className="w-full text-center">winning is an inside the job</h2>
       </div>
 
       <img
-        className="absolute z-30 transition-all w-[40vw] ml-32 "
+        className="absolute z-30 transition-all w-[40vw] ml-32"
         style={{
           transform: `translate(${offset.x}px, ${offset.y}px) scale(${1 - scrollY / 1000})`,
           opacity: 1 - scrollY / 300,
@@ -86,7 +97,9 @@ export default function Picpage() {
         <h2 className="w-full text-white text-center text-sm md:text-2xl capitalize">
           Inspired by the human nervous system that guides everything we do, think, and feel, the Inner Spark Collection boasts revamped frames ready to help you win from within.
         </h2>
-        <button className='uppercase my-10 text-white border py-2 px-5 rounded-xl'>Shop inner spark</button>
+        <button className="uppercase my-10 text-white border py-2 px-5 rounded-xl">
+          Shop inner spark
+        </button>
       </div>
     </figure>
   );
