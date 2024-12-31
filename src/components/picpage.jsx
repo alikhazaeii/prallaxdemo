@@ -70,7 +70,7 @@ export default function Picpage() {
         <img src="https://media.oakley.com/2024/Olympics/Logo.svg" alt="" />
         <h2 className="w-full text-center">winning is an inside the job</h2>
       </div>
-
+      <img className='absolute z-20 transition-all w-28 h-28 right-20 bottom-20' src="/scrollY.gif" alt="" />
       <img
         className="absolute z-30 transition-all w-[40vw] ml-32"
         style={{
